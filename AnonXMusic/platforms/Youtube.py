@@ -242,21 +242,23 @@ class YouTubeAPI:
         loop = asyncio.get_running_loop()
 
         def audio_dl():
-            ydl_optssx = {
-                "format": "bestaudio/best",
-                "outtmpl": "downloads/%(id)s.%(ext)s",
-                "geo_bypass": True,
-                "nocheckcertificate": True,
-                "quiet": True,
-                "no_warnings": True,
-            }
-            x = yt_dlp.YoutubeDL(ydl_optssx)
-            info = x.extract_info(link, False)
-            xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
-            if os.path.exists(xyz):
-                return xyz
-            x.download([link])
-            return xyz
+    ydl_optssx = {
+        "format": "bestaudio/best",
+        "outtmpl": "downloads/%(id)s.%(ext)s",
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "quiet": True,
+        "no_warnings": True,
+        "cookiefile": "cookies.txt"  # Add this line
+    }
+    x = yt_dlp.YoutubeDL(ydl_optssx)
+    info = x.extract_info(link, False)
+    xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
+    if os.path.exists(xyz):
+        return xyz
+    x.download([link])
+    return xyz
+
 
         def video_dl():
             ydl_optssx = {
