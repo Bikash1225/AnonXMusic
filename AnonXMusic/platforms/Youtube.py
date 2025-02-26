@@ -249,7 +249,7 @@ class YouTubeAPI:
         "nocheckcertificate": True,
         "quiet": True,
         "no_warnings": True,
-        "cookiefile": "cookies.txt"  # Add this line
+        "cookiefile": "cookies.txt" 
     }
     x = yt_dlp.YoutubeDL(ydl_optssx)
     info = x.extract_info(link, False)
